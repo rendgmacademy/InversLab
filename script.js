@@ -138,19 +138,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 quote: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."',
                 name: 'Anik Deb',
                 location: 'Sylhet, Bangladesh',
-                rating: 4
+                rating: 4,
+                image: 'images/customer1.webp'
             },
             {
                 quote: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."',
                 name: 'Sarah Ahmed',
                 location: 'Dhaka, Bangladesh',
-                rating: 5
+                rating: 5,
+                image: 'images/Nadia Islam.webp'
             },
             {
                 quote: '"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur voluptatem."',
                 name: 'John Smith',
                 location: 'Chittagong, Bangladesh',
-                rating: 4
+                rating: 4,
+                image: 'images/Karim Hassan.webp'
             }
         ];
 
@@ -159,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const updateTestimonial = () => {
             const testimonial = testimonials[currentIndex];
             const card = document.querySelector('.testimonial-card');
+            const imgWrapper = document.querySelector('.testimonial-img-wrapper img'); // Select image
 
             if (card) {
                 const quote = card.querySelector('.testimonial-quote p');
@@ -169,11 +173,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Fade out
                 card.style.opacity = '0';
                 card.style.transform = 'translateX(20px)';
+                if (imgWrapper) imgWrapper.style.opacity = '0'; // Fade image too
 
                 setTimeout(() => {
                     quote.textContent = testimonial.quote;
                     name.textContent = testimonial.name;
                     location.textContent = testimonial.location;
+                    if (imgWrapper) imgWrapper.src = testimonial.image; // Update image
 
                     // Update stars
                     const fullStars = '★'.repeat(testimonial.rating);
@@ -183,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Fade in
                     card.style.opacity = '1';
                     card.style.transform = 'translateX(0)';
+                    if (imgWrapper) imgWrapper.style.opacity = '1';
                 }, 300);
             }
         };
