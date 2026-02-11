@@ -1312,7 +1312,9 @@ h6 {
     }
 
     .hero-geometric {
-        transform: scale(0.8);
+        transform: none;
+        /* Disable scale transform that might shift layout */
+        height: auto;
     }
 
     .geo-shape.shape-1 {
@@ -1348,8 +1350,11 @@ h6 {
     }
 
     .newsletter-container {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        /* Stretch to fill width */
+        gap: var(--spacing-lg);
     }
 
     .form-group {
@@ -1374,14 +1379,21 @@ h6 {
 @media (max-width: 480px) {
     .container {
         padding: 0 var(--spacing-md);
+        /* Keep consistent padding */
     }
 
     .section-title {
         font-size: 1.75rem;
     }
 
+    .hero-title {
+        font-size: 2.25rem;
+        /* Ensure specific hero title size for small mobile */
+    }
+
     .hero-images {
-        height: 280px;
+        height: auto;
+        margin-bottom: var(--spacing-md);
     }
 
     .stats-grid {
@@ -2475,7 +2487,8 @@ blockquote {
 
     .hero,
     .page-hero {
-        padding: 90px 0 30px;
+        padding: 90px 0 0;
+        /* Removed bottom padding */
     }
 
     .story-geometric {
@@ -2523,7 +2536,9 @@ blockquote {
         width: 100%;
     }
 
-    .amenities-grid {
+    .amenities-grid,
+    .team-grid,
+    .stats-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -2596,11 +2611,12 @@ blockquote {
 
     /* Fix images resizing and positioning on mobile */
     .about-img-container,
-    .ws-img-container {
+    .ws-img-container,
+    .hero-img-wrapper {
+        /* Added hero-img-wrapper to reset transforms */
         position: relative;
         width: 100%;
         max-width: 100%;
-        height: 300px;
         top: 0;
         left: 0;
         margin: 0 auto;
@@ -2608,11 +2624,48 @@ blockquote {
     }
 
     .about-geometric,
-    .workspace-geometric {
+    .workspace-geometric,
+    .story-geometric {
         height: auto;
         display: flex;
+        /* Centers content */
         justify-content: center;
         margin-bottom: var(--spacing-md);
+        width: 100%;
+        /* Ensure full width container */
+    }
+
+    /* Fix About Story geometric fixed widths */
+    .story-geometric {
+        max-width: 100%;
+        height: 350px;
+        /* Reduced height for mobile */
+    }
+
+    .story-shape.shape-1 {
+        width: 250px;
+        /* Responsive size */
+        height: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        /* Center horizontally */
+    }
+
+    .story-img-container {
+        width: 250px;
+        height: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        /* Center horizontally */
+        top: 20px;
+        /* Adjust top spacing */
+    }
+
+    .about-story-container,
+    .vm-grid {
+        grid-template-columns: 1fr;
+        /* Force single column */
+        gap: var(--spacing-xl);
     }
 
     /* Adjust container padding */
@@ -2666,15 +2719,15 @@ blockquote {
     }
 
     .hero-img-container.img-1 {
-        width: 180px;
-        height: 140px;
+        width: 150px;
+        height: 120px;
         top: 0;
         right: 0;
     }
 
     .hero-img-container.img-2 {
-        width: 160px;
-        height: 120px;
+        width: 130px;
+        height: 100px;
         top: 50%;
         left: 0;
     }
@@ -2684,20 +2737,23 @@ blockquote {
         font-size: 2rem;
     }
 
-    /* Padding Adjustments Mobile - Proportional */
+    /* Adjust container padding for standard mobile feel */
     .container {
-        padding: 0 var(--spacing-sm);
+        padding: 0 var(--spacing-md);
     }
 
-    /* Reduce vertical padding for sections significantly */
+    /* Better vertical spacing for mobile - not too cramped */
+    .about-story {
+        padding-top: var(--spacing-lg);
+        /* Reduced top padding */
+        padding-bottom: var(--spacing-xl);
+    }
+
     .about,
     .features,
     .workspaces,
     .pricing,
-    .testimonial,
     .faq,
-    .newsletter-section,
-    .about-story,
     .vision-mission,
     .team,
     .about-stats,
@@ -2707,7 +2763,19 @@ blockquote {
     .amenities,
     .blog-posts,
     .contact-section {
-        padding: var(--spacing-md) 0;
+        padding: var(--spacing-xl) 0;
+    }
+
+    /* Reduced gap between testimonial and newsletter/CTA */
+    .testimonial {
+        padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-lg);
+    }
+
+    .newsletter-section,
+    .newsletter {
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-xl);
     }
 
     .map-section {
@@ -2749,6 +2817,10 @@ blockquote {
 
     .workspace-card.large {
         grid-template-columns: 1fr;
+    }
+
+    .contact-form-container {
+        padding: var(--spacing-lg);
     }
 
     .blog-card.featured-blog {
@@ -2974,11 +3046,15 @@ blockquote {
         flex-direction: column-reverse;
         gap: var(--spacing-lg);
         text-align: center;
+        align-items: center;
+        /* Ensure items center horizontally in flex column */
     }
 
     .hero-img-wrapper {
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1/1;
         margin: 0 auto;
     }
 
@@ -2998,8 +3074,10 @@ blockquote {
     }
 
     .testimonial-img-wrapper {
-        width: 280px;
-        height: 280px;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1/1;
         margin: 0 auto;
     }
 
@@ -3017,10 +3095,22 @@ blockquote {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 480px) {
     .hero-action-form {
-        margin-left: auto;
-        margin-right: auto;
+        flex-direction: column;
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .hero-action-form input {
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-sm);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-action-form .btn {
         width: 100%;
     }
 }
@@ -3203,6 +3293,27 @@ blockquote {
     width: 100%;
     height: auto;
     border-radius: var(--radius-md);
+}
+
+@media (max-width: 768px) {
+    .article-content {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .article-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-content h3 {
+        font-size: 1.25rem;
+    }
+
+    blockquote {
+        padding: var(--spacing-lg);
+        font-size: 1.2rem;
+        margin: var(--spacing-lg) 0;
+    }
 }
 
 /* FAQ Active State */
