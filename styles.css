@@ -2487,8 +2487,7 @@ blockquote {
 
     .hero,
     .page-hero {
-        padding: 90px 0 0;
-        /* Removed bottom padding */
+        padding: 90px 0 30px;
     }
 
     .story-geometric {
@@ -2743,17 +2742,12 @@ blockquote {
     }
 
     /* Better vertical spacing for mobile - not too cramped */
-    .about-story {
-        padding-top: var(--spacing-lg);
-        /* Reduced top padding */
-        padding-bottom: var(--spacing-xl);
-    }
-
     .about,
     .features,
     .workspaces,
     .pricing,
     .faq,
+    .about-story,
     .vision-mission,
     .team,
     .about-stats,
